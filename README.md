@@ -67,7 +67,7 @@ This guide will help you set up and run the Laravel project on your local machin
 
 2. **Access the Swagger documentation:**
 
-    Visit [http://127.0.0.1:8000/api/documentation](http://127.0.0.1:8000/api/documentation) to view the API documentation.
+    Visit [http://localhost:8000/api/documentation](http://localhost:8000/api/documentation) to view the API documentation.
 
 ## Using the API
 
