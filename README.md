@@ -13,8 +13,8 @@ This guide will help you set up and run the Laravel project on your local machin
 1. **Clone the repository:**
 
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/AshirButt925/DigitalTolksTest.git
+    cd DigitalTolksTest
     ```
 
 2. **Install dependencies:**
