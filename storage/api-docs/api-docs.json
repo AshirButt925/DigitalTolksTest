@@ -1,0 +1,284 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Translation API Documentation",
+        "description": "API documentation for the Translation system",
+        "contact": {
+            "email": "ashirbutt925@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Local Development Server"
+        }
+    ],
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login a user",
+                "operationId": "99539a8e18179644cbac3165cf994fe5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "ashir@yopmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/translations": {
+            "get": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Get list of translations",
+                "operationId": "434a55804ca50c9845bd4781c222a539",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Create a new translation",
+                "operationId": "fe38d8cf02ff5c92d2cd8d5dfb095e5f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "locale",
+                                    "key",
+                                    "content",
+                                    "tag"
+                                ],
+                                "properties": {
+                                    "locale": {
+                                        "type": "string",
+                                        "example": "en"
+                                    },
+                                    "key": {
+                                        "type": "string",
+                                        "example": "key_1234"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "Hello World"
+                                    },
+                                    "tag": {
+                                        "type": "string",
+                                        "example": "web"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Translation added",
+                        "headers": {
+                            "Accept": {
+                                "description": "Accept header",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "application/json"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/translations/{translation}": {
+            "put": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Update an existing translation",
+                "operationId": "6b2c2d2ebc0d25ad1a58a6314c313844",
+                "parameters": [
+                    {
+                        "name": "translation",
+                        "in": "path",
+                        "description": "Translation ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "locale",
+                                    "key",
+                                    "content",
+                                    "tag"
+                                ],
+                                "properties": {
+                                    "locale": {
+                                        "type": "string",
+                                        "example": "en"
+                                    },
+                                    "key": {
+                                        "type": "string",
+                                        "example": "key_1234"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "Hello World"
+                                    },
+                                    "tag": {
+                                        "type": "string",
+                                        "example": "web"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Translation updated",
+                        "headers": {
+                            "Accept": {
+                                "description": "Accept header",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "application/json"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/translations/export": {
+            "get": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Export translations",
+                "operationId": "52e76cf9a0dbfcb42b1d151b49f2b09b",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "headers": {
+                            "Accept": {
+                                "description": "Accept header",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "application/json"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Translations",
+            "description": "Translations"
+        }
+    ]
+}
